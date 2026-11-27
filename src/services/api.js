@@ -1,9 +1,11 @@
 // direccion donde corre el backend de fastapi
-const API = 'http://127.0.0.1:8000'
+// en render se define con la variable de entorno VITE_API_URL
+const API = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace(/\/$/, '')
 
 // cuenta de la ui que se usa para pedir el token inicial
-const correoUI = 'ui@liry.cl'
-const contrasenaUI = 'ui-local-dev-2026-dejen-mimir'
+// se leen del archivo .env (local) o de las variables de entorno de render
+const correoUI = import.meta.env.VITE_CORREO_UI
+const contrasenaUI = import.meta.env.VITE_CONTRASENA_UI
 
 // nombres con los que se guardan el token y el usuario en el localstorage
 const claveToken = 'tokenLiry'
