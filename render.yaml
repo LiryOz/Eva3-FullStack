@@ -1,0 +1,22 @@
+# configuracion para desplegar la ui en render como sitio estatico (blueprint)
+services:
+  - type: web
+    name: liry-ui
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    # react router: cualquier ruta devuelve index.html
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # url del backend en render, ej: https://vetenirnaria-liry-backend.onrender.com
+      - key: VITE_API_URL
+        sync: false
+      - key: VITE_CORREO_UI
+        sync: false
+      - key: VITE_CONTRASENA_UI
+        sync: false
